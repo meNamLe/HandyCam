@@ -1,0 +1,8 @@
+{
+  "name": "sign-reader",
+  "app_id": "6d6cc241",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
