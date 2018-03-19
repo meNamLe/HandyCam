@@ -1,15 +1,11 @@
 <ion-content>
 
   <ion-fab right top small>
-      <button (click)="start()" ion-fab color="light"><ion-icon name="switch"></ion-icon></button>
+    <button (click)="takePicture()" ion-fab color="light"><ion-icon name="videocam"></ion-icon></button>
   </ion-fab>
 
   <ion-fab left top small>
-      <button ion-fab color="light"><ion-icon name="exit"></ion-icon></button>
-  </ion-fab>
-
-  <ion-fab right bottom small>
-      <button (click)="refresh()" ion-fab color="light"><ion-icon name="archive"></ion-icon></button>
+    <button (click)="openModal()" ion-fab color="light"><ion-icon name="exit"></ion-icon></button>
   </ion-fab>
 
 </ion-content>

@@ -1,6 +1,8 @@
-import { Component, NgZone } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, ModalController } from 'ionic-angular';
 import * as Clarifai from 'clarifai';
+import { CameraPreviewPictureOptions, CameraPreview } from '@ionic-native/camera-preview';
+import { PicModalPage } from '../pic-modal/pic-modal';
  
 @Component({
   selector: 'page-home',
@@ -13,10 +15,34 @@ export class HomePage {
   err: string = "buttface";
   success: number = 1738;
 
-  constructor(public navCtrl: NavController, private zone: NgZone) {}
+  //picture options
+  pictureOpts: CameraPreviewPictureOptions = {
+    width: 1280,
+    height: 1280,
+    quality: 85
+  }
+  picture: string;
 
-  start(){
+  constructor(public navCtrl: NavController,
+              private cameraPreview: CameraPreview,
+              private modalCtrl: ModalController) {}
 
+  takePicture(){
+
+    // take a picture
+    this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+      this.picture = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err);
+    });
+
+    
+
+  }
+
+  openModal(){
+    let modal = this.modalCtrl.create(PicModalPage, { base64Image: this.picture });
+    modal.present();
   }
   
   refresh(){

@@ -7,11 +7,13 @@ import { CameraPreview } from '@ionic-native/camera-preview'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { PicModalPage } from '../pages/pic-modal/pic-modal';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    PicModalPage
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,8 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    PicModalPage
   ],
   providers: [
     StatusBar,
