@@ -67,10 +67,10 @@ export class HomePage {
     // take a picture
     this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.picture = 'data:image/jpeg;base64,' + imageData;
+      this.predict(this.picture);
     }, (err) => {
       console.log(err);
     });
-    this.predict(this.picture);
   }
 
   openModal(){
