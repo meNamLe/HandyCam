@@ -91,7 +91,9 @@ export class HomePage {
   }
 
   startReader(){
-    this.intervally = setInterval(this.test, 1000);
+    for(let i = 0; i <= 10; i++){
+      this.takePicture();
+    }
   }
 
   async test(){
