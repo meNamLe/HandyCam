@@ -81,7 +81,7 @@ export class HomePage {
   async takePicture(){
 
     // take a picture
-    await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+    this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.picture = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
       console.log(err);
@@ -91,7 +91,11 @@ export class HomePage {
   }
 
   startReader(){
-    this.intervally = setInterval(this.takePicture, 1000);
+    this.intervally = setInterval(this.test, 1000);
+  }
+
+  async test(){
+    console.log('test works');
   }
 
   stopReader(){

@@ -23,7 +23,7 @@ export class MyApp {
         y: 0,
         width: window.screen.width,
         height: window.screen.height,
-        camera: 'front',
+        camera: 'rear',
         toBack: true,
         tapPhoto: false,
         previewDrag: false
