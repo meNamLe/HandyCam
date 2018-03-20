@@ -34,8 +34,9 @@ export class HomePage {
     this.clarifaiService.trainMachine();
   }
 
-  predict(){
-    this.results = this.clarifaiService.machinePredict2();
+  predict(base64: string){
+    let res = this.clarifaiService.machinePredict2(base64);
+    this.results = res;
   }
 
   takePicture(){
@@ -46,6 +47,8 @@ export class HomePage {
     }, (err) => {
       console.log(err);
     });
+
+    this.predict(this.picture);
 
   }
 

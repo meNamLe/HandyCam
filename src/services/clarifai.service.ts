@@ -1,5 +1,4 @@
 import * as Clarifai from 'clarifai'
-import * as base64Img from 'base64-img'
 export class ClarifaiService {
     app = new Clarifai.App({
         apiKey: 'd1f89510500542898b0f12b699852ba1'
@@ -99,21 +98,21 @@ export class ClarifaiService {
       console.log('base64 received and processing')
   }
 
-  machinePredict2(){
-    base64Img.img(this.base64Image, 'image.jpeg', '1', function(err, filepath) {
-        this.app.models.predict("test", [filepath]).then(
+  machinePredict2(base64: string){
+    let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
+
+        this.app.models.predict("test", [imageData]).then(
 
             (response) => {
                 console.log(response);
-                console.log(response.outputs[0].data.concepts[0].value);
-                return response.outputs[0].data.concepts[0].value;
+                console.log(response.outputs[0].data.concepts[0]);
+                return response.outputs[0].data.concepts[0];
             },
             (err) => {
                 console.log(err);
                 return err.data.status.details
             }
         )
-    });
 
   }
 }
