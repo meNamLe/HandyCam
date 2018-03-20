@@ -81,7 +81,7 @@ export class HomePage {
   async takePicture(){
 
     // take a picture
-    this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+    await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.picture = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
       console.log(err);
