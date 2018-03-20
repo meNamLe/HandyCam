@@ -34,21 +34,21 @@ export class HomePage {
               private modalCtrl: ModalController,
               private clarifaiService: ClarifaiService) {}
 
-  allTogetherNow(){
+  async allTogetherNow(){
     this.clarifaiService.setupInputs();
     this.clarifaiService.createMachine();
     this.clarifaiService.trainMachine();
   }
 
-  letsSeeIt(){
+  async letsSeeIt(){
     console.log(this.results.value);
     console.log(this.results.name);
 
   }
 
-  predict = (base64: string) => {
+  predict = async (base64: string) => {
       let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
-      this.app.models.predict("test", [imageData]).then(
+      await this.app.models.predict("test", [imageData]).then(
   
           (response) => {
                   console.log(response);
@@ -62,27 +62,28 @@ export class HomePage {
       )
     }
 
-  takePicture(){
+  async takePicture(){
 
     // take a picture
-    this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+    await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.picture = 'data:image/jpeg;base64,' + imageData;
-      this.predict(this.picture);
     }, (err) => {
       console.log(err);
     });
+    this.predict(this.picture);
+
   }
 
-  openModal(){
+  async openModal(){
     let modal = this.modalCtrl.create(PicModalPage, { base64Image: this.picture });
     modal.present();
   }
   
-  refresh(){
+  async refresh(){
     window['location'].reload();
   }
   
-  reload(){
+  async reload(){
     console.log(this.success)
   }
 
