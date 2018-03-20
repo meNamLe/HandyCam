@@ -8,6 +8,7 @@ import { CameraPreview } from '@ionic-native/camera-preview'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PicModalPage } from '../pages/pic-modal/pic-modal';
+import { ClarifaiService } from '../services/clarifai.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PicModalPage } from '../pages/pic-modal/pic-modal';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CameraPreview
+    CameraPreview,
+    ClarifaiService,
   ]
 })
 export class AppModule {}
