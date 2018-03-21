@@ -47,7 +47,7 @@ export class ClarifaiService {
   }
 
   trainMachine(){
-    this.app.models.train("test").then(
+    this.app.models.train("sign").then(
       function(response) {
         console.log(response);
       },
