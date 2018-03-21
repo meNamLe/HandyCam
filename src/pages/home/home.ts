@@ -58,7 +58,6 @@ export class HomePage {
   //setup code
   async allTogetherNow(){
     this.clarifaiService.setupInputs();
-    this.clarifaiService.createMachine();
     this.clarifaiService.trainMachine();
   }
 

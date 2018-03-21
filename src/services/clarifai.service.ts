@@ -12,56 +12,21 @@ export class ClarifaiService {
 
   setupInputs(){
     this.app.inputs.create([{
-      "url": "https://i.imgur.com/aYDkpfb.jpg",
+      "url": "https://i.imgur.com/DyBOEZt.jpg",
       "concepts": [
         { "id": "again", "value": true }
       ]
     }, {
-      "url": "https://i.imgur.com/hlnF8a2.jpg",
-      "concepts": [
+    "url": "https://i.imgur.com/hiADHhc.jpg",
+    "concepts": [
         { "id": "again", "value": true }
       ]
     }, {
-      "url": "https://i.imgur.com/iuHb4NS.jpg",
-      "concepts": [
+        "url": "https://i.imgur.com/QeXgwXG.jpg",
+        "concepts": [
         { "id": "again", "value": true }
       ]
-    }, {
-      "url": "https://i.imgur.com/nJkLT5Y.jpg",
-      "concepts": [
-        { "id": "again", "value": true }
-      ]
-    }, { 
-      "url": "https://i.imgur.com/Fb7BH4M.jpg",
-      "concepts": [
-        { "id": "again", "value": true }
-      ]
-    }, {        
-      "url": "https://i.imgur.com/b3imFF2.jpg",
-      "concepts": [
-        { "id": "again", "value": true }
-      ]
-    }, {
-      "url": "https://i.imgur.com/lEKLXsK.jpg",
-      "concepts": [
-        { "id": "again", "value": true }
-      ]
-    }, {        
-      "url": "https://i.imgur.com/iwKqsXq.jpg",
-      "concepts": [
-        { "id": "again", "value": true }
-      ]
-    }, {        
-      "url": "https://i.imgur.com/NjuiXtZ.jpg",
-      "concepts": [
-        { "id": "again", "value": true }
-      ]
-    }, {        
-      "url": "https://i.imgur.com/jNMBpxi.jpg",
-      "concepts": [
-        { "id": "again", "value": true }
-      ]
-      }
+        }
     ]);
   }
 
