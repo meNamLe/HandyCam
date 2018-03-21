@@ -38,16 +38,16 @@ export class HomePage {
   ]
   picNum = 0;
   results = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
   ]
 
   constructor(public navCtrl: NavController,
@@ -71,7 +71,9 @@ export class HomePage {
                   console.log('predit');
                   console.log(response);
                   console.log(response.outputs[0].data.concepts[0]);
-                  this.results[this.picNum] = response.outputs[0].data.concepts[0].value;
+                  if(response.outputs[0].data.concepts[0].value > .7){
+                    this.results[this.picNum] = response.outputs[0].data.concepts[0].name;
+                  }
                   this.picNum = this.picNum + 1;
           },
           (err) => {
