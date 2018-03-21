@@ -65,7 +65,7 @@ export class HomePage {
   //clarifai predict function
   predict = (base64: string) => {
       let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
-      this.app.models.predict("test", [imageData]).then(
+      this.app.models.predict("sign", [imageData]).then(
   
           (response) => {
                   console.log('predit');
