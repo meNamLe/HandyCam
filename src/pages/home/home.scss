@@ -2,16 +2,179 @@ page-home {
 
 }
 
-img {
-    position: fixed;
-    bottom: 0;
-    right: 150px
+// Record button and general styling
+button{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: aliceblue;
+    margin-top: 60%;
+    border: 10px black;
+}
+
+.center{
+    text-align: center;
+    margin-top: 25%;
+}
+
+
+// background styling and background imaging
+.scroll-content {
+    overflow-y: hidden;
+    display: block;
+}
+
+.scroll-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 page-home{
-    background-color: rgb(56, 56, 170) !important;
+    height:100%;
+    width:100%;
+    background-color:rgba(0,0,0,0.4) !important;
 }
 
-.scroll-content{
-    overflow-y: hidden !important;
+// READ MY HANDS styling and two animations
+.wrapper {
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 10px 3px;
+    font-size: 30px;
+    width: 90%;
+    height: 70px; 
+    color: white;
 }
+/* h1{
+    text-align: center;
+    color: white; 
+    font-family: "Courier";
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 8.5em;
+    margin-left: 28%;
+  }
+  
+  h1{
+    animation: type2 3s steps(16, end);
+  }
+  
+  @keyframes type2{
+    0%{width: 0;}
+    50%{width: 0;}
+    100%{ width: 50; } 
+  } 
+  */
+
+  page-home span{
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink{
+    to{opacity: .0;}
+  } 
+  
+// sound bars
+
+#bars{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+.bar {
+   background: #E20074;
+    bottom: 1px;
+    height: 8px;
+    position: absolute;
+    width: 10px;      
+    animation: sound 0ms -800ms linear infinite alternate;
+}
+
+@keyframes sound {
+    0% {
+       opacity: .35;
+        height: 3px; 
+    }
+    100% {
+        opacity: 1;       
+        height: 52px;        
+    }
+}
+
+.bar:nth-child(1)  { margin-bottom: 0px; animation-duration: 474ms; }
+.bar:nth-child(2)  { left: 20px; animation-duration: 433ms; }
+.bar:nth-child(3)  { left: 30px; animation-duration: 407ms; }
+.bar:nth-child(4)  { left: 40px; animation-duration: 458ms; }
+.bar:nth-child(5)  { left: 50px; animation-duration: 400ms; }
+.bar:nth-child(6)  { left: 60px; animation-duration: 427ms; }
+.bar:nth-child(7)  { left: 70px; animation-duration: 441ms; }
+.bar:nth-child(8)  { left: 80px; animation-duration: 419ms; }
+.bar:nth-child(9)  { left: 90px; animation-duration: 487ms; }
+.bar:nth-child(10) { left: 100px; animation-duration: 442ms; }
+.bar:nth-child(11)  { left: 110px; animation-duration: 474ms; }
+.bar:nth-child(12)  { left: 120px; animation-duration: 433ms; }
+.bar:nth-child(13)  { left: 130px; animation-duration: 407ms; }
+.bar:nth-child(14)  { left: 140px; animation-duration: 458ms; }
+.bar:nth-child(15)  { left: 150px; animation-duration: 400ms; }
+.bar:nth-child(16)  { left: 160px; animation-duration: 427ms; }
+.bar:nth-child(17)  { left: 170px; animation-duration: 441ms; }
+.bar:nth-child(18)  { left: 180px; animation-duration: 419ms; }
+.bar:nth-child(19)  { left: 190px; animation-duration: 487ms; }
+.bar:nth-child(20) { left: 200px; animation-duration: 442ms; }
+.bar:nth-child(21)  { left: 210px; animation-duration: 474ms; }
+.bar:nth-child(22)  { left: 220px; animation-duration: 433ms; }
+.bar:nth-child(23)  { left: 230px; animation-duration: 407ms; }
+.bar:nth-child(24)  { left: 240px; animation-duration: 458ms; }
+.bar:nth-child(25)  { left: 250px; animation-duration: 400ms; }
+.bar:nth-child(26)  { left: 260px; animation-duration: 427ms; }
+.bar:nth-child(27)  { left: 270px; animation-duration: 441ms; }
+.bar:nth-child(28)  { left: 280px; animation-duration: 419ms; }
+.bar:nth-child(29)  { left: 290px; animation-duration: 487ms; }
+.bar:nth-child(30) { left: 300px; animation-duration: 442ms; }
+.bar:nth-child(31)  { left: 310px; animation-duration: 474ms; }
+.bar:nth-child(32)  { left: 320px; animation-duration: 433ms; }
+.bar:nth-child(33)  { left: 330px; animation-duration: 407ms; }
+.bar:nth-child(34)  { left: 340px; animation-duration: 458ms; }
+.bar:nth-child(35)  { left: 350px; animation-duration: 400ms; }
+.bar:nth-child(36)  { left: 360px; animation-duration: 427ms; }
+.bar:nth-child(37)  { left: 370px; animation-duration: 441ms; }
+.bar:nth-child(38)  { left: 380px; animation-duration: 419ms; }
+.bar:nth-child(39)  { left: 390px; animation-duration: 487ms; }
+.bar:nth-child(40) { left: 400px; animation-duration: 442ms; }
+
+//Button Fill 
+/* button{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: aliceblue;
+    margin-top: 60%;
+    border: 10px black;
+} */
+button {
+    margin-top: 60%;
+    width: 100px;
+    height: 100px;
+    font-size: 60px;
+    border: 2px black solid;
+    border-radius: 50%;
+    background-image: linear-gradient(to left,
+    transparent,
+    transparent 50%,
+    #00c6ff 50%,
+    #00c6ff);
+  background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .25s ease-in;
+  }
+
+  .fill:hover{
+    background-position: 0 0;
+    color:#333;
+  }
+  
+  

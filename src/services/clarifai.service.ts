@@ -3,7 +3,7 @@ export class ClarifaiService {
     res;
     err;
     app = new Clarifai.App({
-        apiKey: 'baec139d8dc34e64bcfd3ecac2bcf1b6'
+        apiKey: 'f23cf468e2534c13958642c7612ae166'
     });
 
       ////////////////////////

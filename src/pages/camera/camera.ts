@@ -12,7 +12,7 @@ import * as Clarifai from 'clarifai';
 })
 export class CameraPage {
   app = new Clarifai.App({
-    apiKey: 'd2005777d0b440c5af643138cb157ad1'
+    apiKey: 'f23cf468e2534c13958642c7612ae166'
   });
   
 
@@ -127,11 +127,11 @@ export class CameraPage {
   //cameraPreview capture picture function
   async takePicture(){
     // take a picture
-/*       await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+       await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.picArr[this.picNum] = ('data:image/jpeg;base64,' + imageData);
     }, (err) => {
       console.log(err);
-    }); */
+    });
     this.predict(this.picArr[this.picNum]);
   }
 
