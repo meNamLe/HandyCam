@@ -99,6 +99,10 @@ export class CameraPage {
     this.clarifaiService.trainMachine();
   }
 
+  switchCamera(){
+    this.cameraPreview.switchCamera();
+  }
+
 
   //clarifai predict function
   predict = (base64: string) => {
