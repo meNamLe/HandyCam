@@ -1,34 +1,25 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { CameraPreview } from '@ionic-native/camera-preview';
+import { CameraPage } from '../pages/camera/camera';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = CameraPage;
 
-  constructor(statusBar: StatusBar, splashScreen: SplashScreen, private cameraPreview: CameraPreview, private platform: Platform) {
+  constructor(statusBar: StatusBar, splashScreen: SplashScreen, private platform: Platform, private modalCtrl: ModalController) {
     this.platform.ready().then(() => {
 
 
       statusBar.styleDefault();
       splashScreen.hide();
 
-      let options = {
-        x: 0,
-        y: 0,
-        width: window.screen.width,
-        height: window.screen.height,
-        camera: 'back',
-        toBack: true,
-        tapPhoto: false,
-        previewDrag: false
-      };
-      this.cameraPreview.startCamera(options);
+      let modal = modalCtrl.create(HomePage);
+      modal.present();
     })
   }
 }

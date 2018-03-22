@@ -7,14 +7,14 @@ import { CameraPreview } from '@ionic-native/camera-preview'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PicModalPage } from '../pages/pic-modal/pic-modal';
 import { ClarifaiService } from '../services/clarifai.service';
+import { CameraPage } from '../pages/camera/camera';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    PicModalPage
+    CameraPage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import { ClarifaiService } from '../services/clarifai.service';
   entryComponents: [
     MyApp,
     HomePage,
-    PicModalPage
+    CameraPage
   ],
   providers: [
     StatusBar,
