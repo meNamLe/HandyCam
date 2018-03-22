@@ -24,16 +24,16 @@ export class CameraPage {
     quality: 85
   }
   picArr = [
+    //me
+    'https://i.imgur.com/PXe8Sny.jpg',
     //thank you
-    'https://i.imgur.com/tq8Lvxe.jpg',
+    'https://i.imgur.com/ldre2vF.jpg',
     //sad
-    'https://i.imgur.com/SavkiJv.jpg',
+    'https://i.imgur.com/kSX3ugH.jpg',
+    //where
+    'https://i.imgur.com/OWHA7n5.jpg',
     //tired
-    'https://i.imgur.com/Ctb1zDJ.jpg',
-    //school
-    'https://i.imgur.com/r8wLrck.jpg',
-    //please
-    'https://i.imgur.com/EbyKBWP.jpg',
+    'https://i.imgur.com/glqpBXr.jpg',
     'https://i.imgur.com/C3lTlqU.jpg',
     'https://i.imgur.com/C3lTlqU.jpg',
     'https://i.imgur.com/C3lTlqU.jpg',
@@ -53,18 +53,7 @@ export class CameraPage {
     '',
     ''
   ] */
-  results = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-  ]
+  results = []
 
   constructor(public navCtrl: NavController,
               private cameraPreview: CameraPreview,
@@ -113,8 +102,8 @@ export class CameraPage {
           (response) => {
                   console.log('predit');
                   console.log(response.outputs[0].data);
-                  if(response.outputs[0].data.concepts[0].value > .4){
-                    this.results[this.picNum] = response.outputs[0].data.concepts[0].name
+                  if(response.outputs[0].data.concepts[0].value > .3){
+                    this.results.push(response.outputs[0].data.concepts[0].name)
                   }
                   this.picNum = this.picNum + 1;
           }, 
@@ -149,7 +138,4 @@ export class CameraPage {
     setTimeout(() => this.takePicture() , 10000);
   }
 
-  pushPage(){
-    
-  }
 }
