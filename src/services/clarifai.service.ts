@@ -3,7 +3,7 @@ export class ClarifaiService {
     res;
     err;
     app = new Clarifai.App({
-        apiKey: 'd1f89510500542898b0f12b699852ba1'
+        apiKey: 'baec139d8dc34e64bcfd3ecac2bcf1b6'
     });
 
       ////////////////////////
@@ -47,7 +47,7 @@ export class ClarifaiService {
   }
 
   trainMachine(){
-    this.app.models.train("sign").then(
+    this.app.models.train("read-hands").then(
       function(response) {
         console.log(response);
       },
