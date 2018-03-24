@@ -26,6 +26,7 @@ export class CameraPage {
 
   results: string;
   resultsVal: any;
+  hit: string = "";
   difficulty = 1;
 
   constructor(public navCtrl: NavController,
@@ -66,15 +67,14 @@ export class CameraPage {
       this.base64Image = ('data:image/jpeg;base64,' + imageData);
     }, (err) => {
       console.log(err);
-    }); 
+    });
     this.predict(this.base64Image)
 
   }
 
    //clarifai predict function
   predict = (base64: string) => {
-      //let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
-      let imageData = base64;
+      let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
       this.app.models.predict("read-pls", [imageData]).then(
   
           (response) => {
@@ -83,7 +83,7 @@ export class CameraPage {
                   console.log(response.outputs[0].input.data);
                   this.results = response.outputs[0].data.concepts[0].name;
                   this.resultsVal = response.outputs[0].data.concepts[0].value;
-
+                  this.hit = "hit";
 
           }, 
           (err) => {
