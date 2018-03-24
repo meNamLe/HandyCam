@@ -26,7 +26,7 @@ export class CameraPage {
 
   results: string;
   resultsVal: any;
-  hit: string = "";
+  hit = 0;
   difficulty = 1;
 
   constructor(public navCtrl: NavController,
@@ -83,7 +83,7 @@ export class CameraPage {
                   console.log(response.outputs[0].input.data);
                   this.results = response.outputs[0].data.concepts[0].name;
                   this.resultsVal = response.outputs[0].data.concepts[0].value;
-                  this.hit = "hit";
+                  this.hit = this.hit + 1;
 
           }, 
           (err) => {
