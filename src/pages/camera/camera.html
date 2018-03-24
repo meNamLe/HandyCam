@@ -1,26 +1,13 @@
 <ion-content>
-    <button (click)="switchCamera()" ion-button secondary>Yeahhhhh</button>
-    <button (click)="startPictures()" ion-button primary>booooy</button>
+    <h1>{{ results }}</h1>
+    <h1>{{ resultsVal }}</h1>
 
-    <ion-card>
-      <ion-card-header>
-        Headass
-      </ion-card-header>
-      <ion-card-content>
-          hEadass           
-          hEadass 
-          hEadass 
-          hEadass 
-          hEadass 
-          hEadass 
-      </ion-card-content>
-    </ion-card>
-<!--   <ion-fab right top small>
-    <button (click)="testStarter()" ion-fab color="light"><ion-icon name="videocam"></ion-icon></button>
-  </ion-fab>
+    <button ion-button primary (click)="takePicture()"></button>
 
-  <ion-fab left top small>
-    <button (click)="testStopper()" ion-fab color="light"><ion-icon name="exit"></ion-icon></button>
-  </ion-fab> -->
+  <ion-item>
+    <ion-range min="1" max="3" step="1" snaps="true" color="primary" [(ngModel)]="difficulty">
+      <ion-icon small range-left name="sunny"></ion-icon>
+    </ion-range>
+  </ion-item>
 
 </ion-content>

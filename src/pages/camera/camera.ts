@@ -12,10 +12,10 @@ import * as Clarifai from 'clarifai';
 })
 export class CameraPage {
   app = new Clarifai.App({
-    apiKey: 'f23cf468e2534c13958642c7612ae166'
+    apiKey: 'd9cc99d9decb4b8ab1d5ccbe657a0b98'
   });
   
-
+  base64Image: string;
 
   //picture options
   pictureOpts: CameraPreviewPictureOptions = {
@@ -23,69 +23,35 @@ export class CameraPage {
     height: 1280,
     quality: 85
   }
-  picArr = [
-    //me
-    'https://i.imgur.com/PXe8Sny.jpg',
-    //thank you
-    'https://i.imgur.com/ldre2vF.jpg',
-    //sad
-    'https://i.imgur.com/kSX3ugH.jpg',
-    //where
-    'https://i.imgur.com/OWHA7n5.jpg',
-    //tired
-    'https://i.imgur.com/glqpBXr.jpg',
-    'https://i.imgur.com/C3lTlqU.jpg',
-    'https://i.imgur.com/C3lTlqU.jpg',
-    'https://i.imgur.com/C3lTlqU.jpg',
-    'https://i.imgur.com/C3lTlqU.jpg',
-    'https://i.imgur.com/C3lTlqU.jpg'
-  ]
-  picNum = 0;
-/*   results = [
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
-  ] */
-  results = []
+
+  results: string;
+  resultsVal: any;
+  difficulty = 1;
 
   constructor(public navCtrl: NavController,
               private cameraPreview: CameraPreview,
               private modalCtrl: ModalController,
               private clarifaiService: ClarifaiService,
               private platform: Platform) {
-      this.platform.ready().then(()=> {
-        let options = {
-          x: 0,
-          y: 0,
-          width: window.screen.width,
-          height: window.screen.height,
-          camera: 'rear',
-          tapPhoto: true,
-          previewDrag: true,
-          toBack: true,
-        }
-        this.cameraPreview.startCamera(options).then(
-          (res)=> {
-            console.log(res)
-          },
-          (err) => {
-            console.log(err)
-          });
-      })
-    }
-  
-
-  //setup code
-  async allTogetherNow(){
-    this.clarifaiService.setupInputs();
-    this.clarifaiService.trainMachine();
+    this.platform.ready().then(()=> {
+      let options = {
+        x: 0,
+        y: 0,
+        width: window.screen.width,
+        height: window.screen.height,
+        camera: 'rear',
+        tapPhoto: true,
+        previewDrag: true,
+        toBack: true,
+      }
+      this.cameraPreview.startCamera(options).then(
+        (res)=> {
+          console.log(res)
+        },
+        (err) => {
+          console.log(err)
+        });
+    })
   }
 
   switchCamera(){
@@ -93,19 +59,32 @@ export class CameraPage {
   }
 
 
-  //clarifai predict function
+  //cameraPreview capture picture function
+  async takePicture(){
+    // take a picture
+      await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+      this.base64Image = ('data:image/jpeg;base64,' + imageData);
+    }, (err) => {
+      console.log(err);
+    }); 
+    this.predict(this.base64Image)
+
+  }
+
+   //clarifai predict function
   predict = (base64: string) => {
       //let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
       let imageData = base64;
-      this.app.models.predict("sign", [imageData]).then(
+      this.app.models.predict("read-pls", [imageData]).then(
   
           (response) => {
                   console.log('predit');
-                  console.log(response.outputs[0].data);
-                  if(response.outputs[0].data.concepts[0].value > .3){
-                    this.results.push(response.outputs[0].data.concepts[0].name)
-                  }
-                  this.picNum = this.picNum + 1;
+                  console.log(response.outputs[0].data.concepts);
+                  console.log(response.outputs[0].input.data);
+                  this.results = response.outputs[0].data.concepts[0].name;
+                  this.resultsVal = response.outputs[0].data.concepts[0].value;
+
+
           }, 
           (err) => {
                   console.log(err);
@@ -113,18 +92,10 @@ export class CameraPage {
           }
       )
     }
-  //cameraPreview capture picture function
-  async takePicture(){
-    // take a picture
-       await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
-      this.picArr[this.picNum] = ('data:image/jpeg;base64,' + imageData);
-    }, (err) => {
-      console.log(err);
-    });
-    this.predict(this.picArr[this.picNum]);
-  }
+} 
 
-  startPictures(){
+
+/*   startPictures(){
 
     setTimeout(() => this.takePicture() , 1000);
     setTimeout(() => this.takePicture() , 2000);
@@ -137,5 +108,15 @@ export class CameraPage {
     setTimeout(() => this.takePicture() , 9000);
     setTimeout(() => this.takePicture() , 10000);
   }
+  
+      if(this.difficulty == 1){
+    console.log('matty cox');
+    }
+    else if(this.difficulty == 2){
+      console.log('betalpha male');
+    }
+    else{
+      console.log('big man')
+    }
 
-}
+  */
