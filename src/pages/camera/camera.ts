@@ -12,7 +12,7 @@ import * as Clarifai from 'clarifai';
 })
 export class CameraPage {
   app = new Clarifai.App({
-    apiKey: 'd9cc99d9decb4b8ab1d5ccbe657a0b98'
+    apiKey: 'da60c697e9b7404f9192684ffca0c146'
   });
   
   base64Image: string;
