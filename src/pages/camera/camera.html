@@ -1,10 +1,8 @@
 <ion-content>
-    <h1>{{ results }}</h1>
-    <h1>{{ resultsVal }}</h1>
-    <h1>{{ hit }}</h1>
-
-    <button ion-button primary (click)="takePicture()"></button>
-
+    <button ion-button primary (click)="takePicture()">Pic And Predict</button>
+    <button ion-button secondary (click)="statsSwitch()">Stats Switching</button>
+    <h4>{{ hit }}</h4>
+    <div style="opacity: 0;" *ngIf="bool" [ngClass]="stats ? 'classy' : 'unclassy'">{{ results }}</div>
   <ion-item>
     <ion-range min="1" max="3" step="1" snaps="true" color="primary" [(ngModel)]="difficulty">
       <ion-icon small range-left name="sunny"></ion-icon>

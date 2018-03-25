@@ -4,6 +4,7 @@ page-camera {
 
 .scroll-content{
     overflow-y: hidden !important;
+    text-align: center;
 }
 
 .range-tick{
@@ -18,4 +19,43 @@ page-camera {
 .item {
     position: fixed;
     bottom: 0;
+}
+
+@keyframes statsEnter{
+    from {
+        opacity: 0;
+        font-size: 0px;
+        height: 20px;
+      }
+    to {
+        opacity: 1;
+        font-size: 25px;
+        height: 120px;
+      }
+}
+
+@keyframes statsExit{
+    from {
+        opacity: 1;
+        font-size: 25px;
+        height: 120px;
+      }
+    to {
+        opacity: 0;
+        font-size: 0px;
+        height: 20px;
+      }
+}
+
+
+.classy{
+    background: white;
+    animation: statsEnter 2s;
+    animation-fill-mode: forwards;
+}
+
+.unclassy{
+    background:white;
+    animation: statsExit 2s;
+    animation-fill-mode: forwards;
 }

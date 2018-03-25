@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, Platform } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { CameraPreviewPictureOptions, CameraPreview } from '@ionic-native/camera-preview';
-// import { PicModalPage } from '../pic-modal/pic-modal';
-import { ClarifaiService } from '../../services/clarifai.service';
 
 import * as Clarifai from 'clarifai';
 
@@ -16,6 +14,7 @@ export class CameraPage {
   });
   
   base64Image: string;
+  base64Image2: string;
 
   //picture options
   pictureOpts: CameraPreviewPictureOptions = {
@@ -24,15 +23,17 @@ export class CameraPage {
     quality: 85
   }
 
+  word = ["k","i","t","e"];
   results: string;
   resultsVal: any;
   hit = 0;
   difficulty = 1;
 
+  stats = false;
+  bool = false;
+
   constructor(public navCtrl: NavController,
               private cameraPreview: CameraPreview,
-              private modalCtrl: ModalController,
-              private clarifaiService: ClarifaiService,
               private platform: Platform) {
     this.platform.ready().then(()=> {
       let options = {
@@ -59,30 +60,46 @@ export class CameraPage {
     this.cameraPreview.switchCamera();
   }
 
+  statsSwitch(){
+    this.stats = !this.stats;
+    if(this.bool == false){
+      this.bool = true;
+    }
+  }
+
 
   //cameraPreview capture picture function
   async takePicture(){
     // take a picture
-      await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+/*     await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.base64Image = ('data:image/jpeg;base64,' + imageData);
     }, (err) => {
       console.log(err);
     });
-    this.predict(this.base64Image)
+    await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+      this.base64Image2 = ('data:image/jpeg;base64,' + imageData);
+    }, (err) => {
+      console.log(err);
+    }); */
+    this.predict(this.base64Image, this.base64Image2)
 
   }
 
    //clarifai predict function
-  predict = (base64: string) => {
-      let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
-      this.app.models.predict("read-pls", [imageData]).then(
+  predict = (base64: string, base642: string) => {
+      /* let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
+      let imageData2 = base642.replace(/^data:image\/(.*);base64,/, ''); */
+      this.app.models.predict("reddy", ['https://i.imgur.com/zkYJgbU.jpg', 'https://i.imgur.com/JxHBIJn.jpg','https://i.imgur.com/xocAXh0.jpg','https://i.imgur.com/Po7idoZ.jpg']).then(
   
           (response) => {
                   console.log('predit');
-                  console.log(response.outputs[0].data.concepts);
-                  console.log(response.outputs[0].input.data);
-                  this.results = response.outputs[0].data.concepts[0].name;
-                  this.resultsVal = response.outputs[0].data.concepts[0].value;
+                  for(let i = 0; i< 4; i++){
+                    if(response.outputs[i].data.concepts[0].name == this.word[i]){
+                      this.results = this.results + response.outputs[i].data.concepts[0].name;
+                      console.log(response.outputs[i].data.concepts[0].name)
+                      console.log(this.results);
+                    }
+                  }
                   this.hit = this.hit + 1;
 
           }, 
