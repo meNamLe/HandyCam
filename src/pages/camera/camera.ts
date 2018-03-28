@@ -72,19 +72,17 @@ export class CameraPage {
   //cameraPreview capture picture function
   async takePicture(){
     // take a picture
-    /* await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
-      this.base64Image = ('data:image/jpeg;base64,' + imageData);
+    await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+      this.picArr[this.picArrNum] = ('data:image/jpeg;base64,' + imageData);
     }, (err) => {
       console.log(err);
-    }); */
-    console.log('pic taken');
-    
+    });
   }
 
    //clarifai predict function
   predict = (picArr) => {
-      // let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
-      this.app.models.predict("reddy", picArr ).then(
+      let imageData = picArr.map((base64) => base64.replace(/^data:image\/(.*);base64,/, ''));
+      this.app.models.predict("reddy", imageData ).then(
   
           (response) => {
                   console.log('predit');
@@ -112,14 +110,15 @@ export class CameraPage {
       setTimeout(() => this.takePicture() , 2000);
       setTimeout(() => this.takePicture() , 3000);
       setTimeout(() => this.takePicture() , 4000);
-      setTimeout(() => this.takePicture() , 5000);
+      setTimeout(() => this.predict(this.picArr), 5000);
+ /*      setTimeout(() => this.takePicture() , 5000);
       setTimeout(() => this.takePicture() , 6000);
       setTimeout(() => this.takePicture() , 7000);
       setTimeout(() => this.takePicture() , 8000);
       setTimeout(() => this.takePicture() , 9000);
-      setTimeout(() => this.takePicture() , 10000);
-      setTimeout(() => this.predict(testArr) , 11000);
-    }
+      setTimeout(() => this.takePicture() , 10000); */
+/*       setTimeout(() => this.predict(testArr) , 11000);
+ */    }
 } 
 /*   
       if(this.difficulty == 1){
