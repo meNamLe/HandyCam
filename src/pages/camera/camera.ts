@@ -82,7 +82,7 @@ export class CameraPage {
 
    //clarifai predict function
   predict = (picArr) => {
-      let imageData = picArr.map((base64) => base64.replace(/^data:image\/(.*);base64,/, ''));
+      let imageData = picArr.map((base64) => {return base64.replace(/^data:image\/(.*);base64,/, '')});
       this.app.models.predict("reddy", imageData ).then(
   
           (response) => {
