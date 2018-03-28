@@ -24,8 +24,9 @@ export class CameraPage {
   }
 
   word = ["k","i","t","e"];
-  results: string;
-  resultsVal: any;
+  picArr = ['','','','','','','','','',''];
+  picArrNum = 0;
+  results: string = '';
   hit = 0;
   difficulty = 1;
 
@@ -71,25 +72,19 @@ export class CameraPage {
   //cameraPreview capture picture function
   async takePicture(){
     // take a picture
-/*     await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+    /* await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.base64Image = ('data:image/jpeg;base64,' + imageData);
     }, (err) => {
       console.log(err);
-    });
-    await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
-      this.base64Image2 = ('data:image/jpeg;base64,' + imageData);
-    }, (err) => {
-      console.log(err);
     }); */
-    this.predict(this.base64Image, this.base64Image2)
-
+    console.log('pic taken');
+    
   }
 
    //clarifai predict function
-  predict = (base64: string, base642: string) => {
-      /* let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
-      let imageData2 = base642.replace(/^data:image\/(.*);base64,/, ''); */
-      this.app.models.predict("reddy", ['https://i.imgur.com/zkYJgbU.jpg', 'https://i.imgur.com/JxHBIJn.jpg','https://i.imgur.com/xocAXh0.jpg','https://i.imgur.com/Po7idoZ.jpg']).then(
+  predict = (picArr) => {
+      // let imageData = base64.replace(/^data:image\/(.*);base64,/, '');
+      this.app.models.predict("reddy", picArr ).then(
   
           (response) => {
                   console.log('predit');
@@ -109,23 +104,24 @@ export class CameraPage {
           }
       )
     }
+
+    startPictures(){
+      let testArr = ['https://i.imgur.com/zkYJgbU.jpg', 'https://i.imgur.com/JxHBIJn.jpg','https://i.imgur.com/xocAXh0.jpg','https://i.imgur.com/Po7idoZ.jpg'];    
+
+      setTimeout(() => this.takePicture() , 1000);
+      setTimeout(() => this.takePicture() , 2000);
+      setTimeout(() => this.takePicture() , 3000);
+      setTimeout(() => this.takePicture() , 4000);
+      setTimeout(() => this.takePicture() , 5000);
+      setTimeout(() => this.takePicture() , 6000);
+      setTimeout(() => this.takePicture() , 7000);
+      setTimeout(() => this.takePicture() , 8000);
+      setTimeout(() => this.takePicture() , 9000);
+      setTimeout(() => this.takePicture() , 10000);
+      setTimeout(() => this.predict(testArr) , 11000);
+    }
 } 
-
-
-/*   startPictures(){
-
-    setTimeout(() => this.takePicture() , 1000);
-    setTimeout(() => this.takePicture() , 2000);
-    setTimeout(() => this.takePicture() , 3000);
-    setTimeout(() => this.takePicture() , 4000);
-    setTimeout(() => this.takePicture() , 5000);
-    setTimeout(() => this.takePicture() , 6000);
-    setTimeout(() => this.takePicture() , 7000);
-    setTimeout(() => this.takePicture() , 8000);
-    setTimeout(() => this.takePicture() , 9000);
-    setTimeout(() => this.takePicture() , 10000);
-  }
-  
+/*   
       if(this.difficulty == 1){
     console.log('matty cox');
     }
@@ -135,5 +131,4 @@ export class CameraPage {
     else{
       console.log('big man')
     }
-
-  */
+ */

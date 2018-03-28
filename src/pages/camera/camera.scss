@@ -25,12 +25,12 @@ page-camera {
     from {
         opacity: 0;
         font-size: 0px;
-        height: 20px;
+        height: 0;
       }
     to {
         opacity: 1;
         font-size: 25px;
-        height: 120px;
+        height: 100px;
       }
 }
 
@@ -38,24 +38,40 @@ page-camera {
     from {
         opacity: 1;
         font-size: 25px;
-        height: 120px;
+        height: 100px;
       }
     to {
         opacity: 0;
         font-size: 0px;
-        height: 20px;
+        height: 0;
       }
 }
 
+svg{
+    position: absolute;
+    left:0;
+}
 
 .classy{
+    margin: auto;
+    position: absolute;
     background: white;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     animation: statsEnter 2s;
     animation-fill-mode: forwards;
 }
 
 .unclassy{
+    margin: auto;
+    position: absolute;
     background:white;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     animation: statsExit 2s;
     animation-fill-mode: forwards;
 }
