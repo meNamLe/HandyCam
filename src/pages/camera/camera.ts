@@ -123,14 +123,14 @@ export class CameraPage {
       setTimeout(() => this.takePicture() , 10000);
      } */
      startPictures(){
-      setTimeout(() => this.takePicture() , 1000);
       setTimeout(() => this.takePicture() , 2000);
-      setTimeout(() => this.takePicture() , 3000);
       setTimeout(() => this.takePicture() , 4000);
-      setTimeout(() => this.takePicture() , 5000);
       setTimeout(() => this.takePicture() , 6000);
-      setTimeout(() => this.takePicture() , 7000);
-      setTimeout(() => this.predict() , 8000);
+      setTimeout(() => this.takePicture() , 8000);
+      setTimeout(() => this.takePicture() , 10000);
+      setTimeout(() => this.takePicture() , 12000);
+      setTimeout(() => this.takePicture() , 14000);
+      setTimeout(() => this.predict() , 16000);
     }
 } 
 /*   
