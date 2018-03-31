@@ -27,7 +27,7 @@ export class CameraPage {
   picArr = ['','','','','','',''];
   picArrNum = 0;
   results: string = '';
-  hit = 0;
+  hit = "c";
   difficulty = 1;
 
   stats = false;
@@ -78,6 +78,7 @@ export class CameraPage {
     }, (err) => {
       console.log(err);
     });
+    this.hit = this.picArr[this.picArrNum];
     console.log('picture captured');
   }
 
@@ -103,7 +104,6 @@ export class CameraPage {
 
           }
       )
-      this.hit = this.hit + 1;
       this.statsSwitch();
     }
 
