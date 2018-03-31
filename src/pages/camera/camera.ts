@@ -72,12 +72,12 @@ export class CameraPage {
   //cameraPreview capture picture function
   async takePicture(){
     // take a picture
-    /* await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+    await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.picArr[this.picArrNum] = ('data:image/jpeg;base64,' + imageData);
       this.picArrNum++;
     }, (err) => {
       console.log(err);
-    }); */
+    });
     console.log('picture captured');
   }
 
