@@ -92,11 +92,12 @@ export class CameraPage {
                   console.log('predit');
                   console.log(response);
                   for(let i = 0; i< 7; i++){
-                    if(response.outputs[i].data.concepts[0].name == this.word[i]){
-                      this.results = this.results + response.outputs[i].data.concepts[0].name;
+                      //if(response.outputs[i].data.concepts[0].name == this.word[i]){
+                      //this.results = this.results + response.outputs[i].data.concepts[0].name;
+                      this.results = this.results.concat(response.outputs[i].data.concepts[0].name);
                       console.log(response.outputs[i].data.concepts[0].name)
                       console.log(this.results);
-                    }
+                    //}
                   }
           }, 
           (err) => {
