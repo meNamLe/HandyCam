@@ -18,8 +18,8 @@ export class CameraPage {
 
   //picture options
   pictureOpts: CameraPreviewPictureOptions = {
-    width: 1280,
-    height: 1280,
+    width: 1080,
+    height: 1920,
     quality: 85
   }
 
@@ -31,6 +31,7 @@ export class CameraPage {
   difficulty = 1;
 
   stats = false;
+  anim = true;
   bool = false;
 
   constructor(public navCtrl: NavController,
@@ -68,6 +69,12 @@ export class CameraPage {
     }
   }
 
+  ionViewDidEnter(){
+    console.log('view did load');
+    this.anim = !this.anim;
+  }
+ 
+
 
   //cameraPreview capture picture function
   async takePicture(){
@@ -85,13 +92,12 @@ export class CameraPage {
    //clarifai predict function
   predict = async () => {
       let imageData = this.picArr.map((base64) => {return base64.replace(/^data:image\/(.*);base64,/, '')});
-      //let imageData = picArr;
       await this.app.models.predict("read-my-hands", imageData ).then(
   
           (response) => {
                   console.log('predit');
                   console.log(response);
-                  for(let i = 0; i< 7; i++){
+                  for(let i = 0; i< 5; i++){
                       //if(response.outputs[i].data.concepts[0].name == this.word[i]){
                       //this.results = this.results + response.outputs[i].data.concepts[0].name;
                       this.results = this.results.concat(response.outputs[i].data.concepts[0].name);
@@ -109,20 +115,14 @@ export class CameraPage {
     }
 
 /*     startPictures(){
-      let testArr = ['https://i.imgur.com/FdheT2t.jpg', 'https://i.imgur.com/vKCXfnN.jpg','https://i.imgur.com/Yy7oysN.jpg','https://i.imgur.com/Yy7oysN.jpg','https://i.imgur.com/vKCXfnN.jpg','https://i.imgur.com/ufdOLSQ.jpg','https://i.imgur.com/OASiZwH.jpg'];    
-
+      //let testArr = ['https://i.imgur.com/FdheT2t.jpg', 'https://i.imgur.com/vKCXfnN.jpg','https://i.imgur.com/Yy7oysN.jpg','https://i.imgur.com/Yy7oysN.jpg','https://i.imgur.com/vKCXfnN.jpg','https://i.imgur.com/ufdOLSQ.jpg','https://i.imgur.com/OASiZwH.jpg'];    
+      let testArr = ['https://i.imgur.com/28x1RaU.jpg','https://i.imgur.com/fcoXdA3.jpg','https://i.imgur.com/vfQGN8Z.jpg','https://i.imgur.com/7jpKVxc.jpg','https://i.imgur.com/KOYRX5l.jpg'];
 
       setTimeout(() => this.takePicture() , 1000);
       setTimeout(() => this.takePicture() , 2000);
       setTimeout(() => this.predict(testArr), 3000);
-      setTimeout(() => this.takePicture() , 5000);
-      setTimeout(() => this.takePicture() , 6000);
-      setTimeout(() => this.takePicture() , 7000);
-      setTimeout(() => this.takePicture() , 8000);
-      setTimeout(() => this.takePicture() , 9000);
-      setTimeout(() => this.takePicture() , 10000);
-     } */
-     startPictures(){
+     }  */
+    startPictures(){
       setTimeout(() => this.takePicture() , 2000);
       setTimeout(() => this.takePicture() , 4000);
       setTimeout(() => this.takePicture() , 6000);
@@ -131,7 +131,7 @@ export class CameraPage {
       setTimeout(() => this.takePicture() , 12000);
       setTimeout(() => this.takePicture() , 14000);
       setTimeout(() => this.predict() , 16000);
-    }
+    } 
 } 
 /*   
       if(this.difficulty == 1){

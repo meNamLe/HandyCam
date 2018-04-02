@@ -21,6 +21,45 @@ page-camera {
     bottom: 0;
 }
 
+/* 
+svg{
+    position: absolute;
+    left:0;
+} */
+
+svg {
+    height: 30%;
+    width: 50%;
+    margin-top: 25%;
+}
+
+.bounce-anim {
+    animation: bounce 1s alternate infinite;
+}
+
+.no-anim {
+    animation: none;
+}
+
+@keyframes bounce {
+    from { margin-top: 25%; }
+    to   { margin-top: 28%; }
+}
+
+// start buttton
+
+.start-wrapper {
+    position: fixed;
+    width: 100%
+}
+
+.start-btn {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
 @keyframes statsEnter{
     from {
         opacity: 0;
@@ -45,40 +84,6 @@ page-camera {
         font-size: 0px;
         height: 0;
       }
-}
-/* 
-svg{
-    position: absolute;
-    left:0;
-} */
-
-svg {
-    height: 30%;
-    width: 50%;
-    margin-top: 25%;
-}
-
-.bounce-anim {
-    animation: bounce 1s alternate infinite;
-}
-
-@keyframes bounce {
-    from { margin-top: 25%; }
-    to   { margin-top: 28%; }
-}
-
-// start buttton
-
-.start-wrapper {
-    position: fixed;
-    width: 100%
-}
-
-.start-btn {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
 }
 
 
@@ -105,3 +110,4 @@ svg {
     animation: statsExit 2s;
     animation-fill-mode: forwards;
 }
+
