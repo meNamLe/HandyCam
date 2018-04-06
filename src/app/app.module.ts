@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, Slides } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { CameraPreview } from '@ionic-native/camera-preview'
@@ -32,6 +32,7 @@ import { CameraPage } from '../pages/camera/camera';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CameraPreview,
     ClarifaiService,
+    Slides
   ]
 })
 export class AppModule {}

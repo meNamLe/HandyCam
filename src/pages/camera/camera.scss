@@ -7,20 +7,6 @@ page-camera {
     text-align: center;
 }
 
-.range-tick{
-    height: 6px !important;
-}
-.range{
-    width: 80% !important;
-}
-.ion-block{
-    align-items: left !important;
-}
-.item {
-    position: fixed;
-    bottom: 0;
-}
-
 /* 
 svg{
     position: absolute;
@@ -37,8 +23,40 @@ svg {
     animation: bounce 1s alternate infinite;
 }
 
+.bounce-in {
+    animation: animate-down .7s, fade-in .7s; 
+}
+
 .no-anim {
     animation: none;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }   
+  100%   { opacity: 1; } 
+}
+
+input{
+  background-color: rgba(255,255,255,1)!important;
+}
+input::-webkit-input-placeholder { padding-left:10px; }
+input::-webkit-input-placeholder { padding-left:10px; }
+input::-webkit-input-placeholder { padding-left:10px; }
+  
+a{
+  font-size:1.2rem;
+} 
+
+@keyframes animate-down{
+  0% {
+    transform: translateY(-200px); 
+    animation-timing-function: cubic-bezier(.200, 1, .355, 1.6);
+  }
+  
+  100% {
+    transform: translateY(0px);
+    animation-timing-function: cubic-bezier(.55, .055, .675, .1);
+  }
 }
 
 @keyframes bounce {
@@ -48,7 +66,7 @@ svg {
 
 // start buttton
 
-.start-wrapper {
+/* .start-wrapper {
     position: fixed;
     width: 100%
 }
@@ -59,6 +77,8 @@ svg {
     margin-right: auto;
     width: 40%;
 }
+ */
+
 
 @keyframes statsEnter{
     from {

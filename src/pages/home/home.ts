@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { CameraPage } from '../camera/camera';
 
 @Component({
@@ -7,12 +7,15 @@ import { CameraPage } from '../camera/camera';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  constructor(private navCtrl: NavController){
-
+  callback = this.navParams.get("callback");
+  constructor(private navCtrl: NavController, private navParams: NavParams){
   }
 
+
   openCamera(){
-    this.navCtrl.pop();
+    this.callback(true).then(()=>{
+      this.navCtrl.pop();
+    });  
   }
 }
 
