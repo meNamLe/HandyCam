@@ -2,6 +2,68 @@ page-home {
 
 }
 
+// svg devils
+
+ion-slides {
+    position: fixed;
+    top: 5%;
+}
+
+svg {
+    height: 30%;
+    width: 50%;
+    margin-top: -40%;
+}
+
+.bounce-anim {
+    animation: bounce 1s alternate infinite;
+}
+
+.bounce-in {
+    animation: animate-down, fade-in, bounce;
+    animation-duration: .7s, .7s, 1s;
+    animation-iteration-count: 1, 1, infinite;
+    animation-direction: alternate;
+
+}
+
+.no-anim {
+    animation: none;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }   
+  100%   { opacity: 1; } 
+}
+
+input{
+  background-color: rgba(255,255,255,1)!important;
+}
+input::-webkit-input-placeholder { padding-left:10px; }
+input::-webkit-input-placeholder { padding-left:10px; }
+input::-webkit-input-placeholder { padding-left:10px; }
+  
+a{
+  font-size:1.2rem;
+} 
+
+@keyframes animate-down{
+  0% {
+    transform: translateY(-200px); 
+    animation-timing-function: cubic-bezier(.200, 1, .355, 1.6);
+  }
+  
+  100% {
+    transform: translateY(0px);
+    animation-timing-function: cubic-bezier(.55, .055, .675, .1);
+  }
+}
+
+@keyframes bounce {
+    from { margin-top: 20%; }
+    to   { margin-top: 30%; }
+}
+
 // Record button and general styling
 button{
     border-radius: 50%;
@@ -36,47 +98,37 @@ page-home{
     background-color:rgba(0,0,0,0.4) !important;
 }
 
+
+
+
+
+
+
 // READ MY HANDS styling and two animations
 .wrapper {
     border: 2px solid white;
     border-radius: 10px;
     margin: 0 auto;
     padding: 10px 3px;
-    font-size: 30px;
-    width: 90%;
     height: 70px; 
     color: white;
 }
-/* h1{
-    text-align: center;
-    color: white; 
-    font-family: "Courier";
-    font-size: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 8.5em;
-    margin-left: 28%;
-  }
   
-  h1{
-    animation: type2 3s steps(16, end);
-  }
-  
-  @keyframes type2{
-    0%{width: 0;}
-    50%{width: 0;}
-    100%{ width: 50; } 
-  } 
-  */
+#title {
+    margin-top: -1rem;
+    font-size: 5.6rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
-  page-home span{
-    animation: blink 1s infinite;
-  }
 
-  @keyframes blink{
-    to{opacity: .0;}
-  } 
-  
+
+
+
+
+
+
+
+
 // sound bars
 
 #bars{
@@ -85,13 +137,20 @@ page-home{
     width: 100%;
 }
 
-.bar {
+#bar {
    background: #E20074;
     bottom: 1px;
     height: 8px;
     position: absolute;
     width: 10px;      
+}
+
+.active{
     animation: sound 0ms -800ms linear infinite alternate;
+}
+
+.non-active{
+    animation: soundLow 0ms -800ms linear infinite alternate;
 }
 
 @keyframes sound {
@@ -105,76 +164,66 @@ page-home{
     }
 }
 
-.bar:nth-child(1)  { margin-bottom: 0px; animation-duration: 474ms; }
-.bar:nth-child(2)  { left: 20px; animation-duration: 433ms; }
-.bar:nth-child(3)  { left: 30px; animation-duration: 407ms; }
-.bar:nth-child(4)  { left: 40px; animation-duration: 458ms; }
-.bar:nth-child(5)  { left: 50px; animation-duration: 400ms; }
-.bar:nth-child(6)  { left: 60px; animation-duration: 427ms; }
-.bar:nth-child(7)  { left: 70px; animation-duration: 441ms; }
-.bar:nth-child(8)  { left: 80px; animation-duration: 419ms; }
-.bar:nth-child(9)  { left: 90px; animation-duration: 487ms; }
-.bar:nth-child(10) { left: 100px; animation-duration: 442ms; }
-.bar:nth-child(11)  { left: 110px; animation-duration: 474ms; }
-.bar:nth-child(12)  { left: 120px; animation-duration: 433ms; }
-.bar:nth-child(13)  { left: 130px; animation-duration: 407ms; }
-.bar:nth-child(14)  { left: 140px; animation-duration: 458ms; }
-.bar:nth-child(15)  { left: 150px; animation-duration: 400ms; }
-.bar:nth-child(16)  { left: 160px; animation-duration: 427ms; }
-.bar:nth-child(17)  { left: 170px; animation-duration: 441ms; }
-.bar:nth-child(18)  { left: 180px; animation-duration: 419ms; }
-.bar:nth-child(19)  { left: 190px; animation-duration: 487ms; }
-.bar:nth-child(20) { left: 200px; animation-duration: 442ms; }
-.bar:nth-child(21)  { left: 210px; animation-duration: 474ms; }
-.bar:nth-child(22)  { left: 220px; animation-duration: 433ms; }
-.bar:nth-child(23)  { left: 230px; animation-duration: 407ms; }
-.bar:nth-child(24)  { left: 240px; animation-duration: 458ms; }
-.bar:nth-child(25)  { left: 250px; animation-duration: 400ms; }
-.bar:nth-child(26)  { left: 260px; animation-duration: 427ms; }
-.bar:nth-child(27)  { left: 270px; animation-duration: 441ms; }
-.bar:nth-child(28)  { left: 280px; animation-duration: 419ms; }
-.bar:nth-child(29)  { left: 290px; animation-duration: 487ms; }
-.bar:nth-child(30) { left: 300px; animation-duration: 442ms; }
-.bar:nth-child(31)  { left: 310px; animation-duration: 474ms; }
-.bar:nth-child(32)  { left: 320px; animation-duration: 433ms; }
-.bar:nth-child(33)  { left: 330px; animation-duration: 407ms; }
-.bar:nth-child(34)  { left: 340px; animation-duration: 458ms; }
-.bar:nth-child(35)  { left: 350px; animation-duration: 400ms; }
-.bar:nth-child(36)  { left: 360px; animation-duration: 427ms; }
-.bar:nth-child(37)  { left: 370px; animation-duration: 441ms; }
-.bar:nth-child(38)  { left: 380px; animation-duration: 419ms; }
-.bar:nth-child(39)  { left: 390px; animation-duration: 487ms; }
-.bar:nth-child(40) { left: 400px; animation-duration: 442ms; }
+@keyframes soundLow {
+    0% {
+        opacity: .35;
+         height: 3px; 
+    }
+     100% {
+         opacity: 1;       
+         height: 10px;        
+    }
+}
+.easy{
+    #bar:nth-child(1)  { margin-bottom: 0px; animation-duration: 474ms; }
+    #bar:nth-child(2)  { left: 3%; animation-duration: 440ms; }
+    #bar:nth-child(3)  { left: 6%; animation-duration: 433ms; }
+    #bar:nth-child(4)  { left: 9%; animation-duration: 407ms; }
+    #bar:nth-child(5)  { left: 12%; animation-duration: 458ms; }
+    #bar:nth-child(6)  { left: 15%; animation-duration: 400ms; }
+    #bar:nth-child(7)  { left: 18%; animation-duration: 427ms; }
+    #bar:nth-child(8)  { left: 21%; animation-duration: 441ms; }
+    #bar:nth-child(9)  { left: 24%; animation-duration: 419ms; }
+    #bar:nth-child(10)  { left: 27%; animation-duration: 487ms; }
+    #bar:nth-child(11) { left: 30%; animation-duration: 442ms; }
+}
 
-//Button Fill 
-/* button{
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    background-color: aliceblue;
-    margin-top: 60%;
-    border: 10px black;
-} */
-button {
-    margin-top: 60%;
-    width: 100px;
-    height: 100px;
-    font-size: 60px;
-    border: 2px black solid;
-    border-radius: 50%;
-    background-image: linear-gradient(to left,
-    transparent,
-    transparent 50%,
-    #00c6ff 50%,
-    #00c6ff);
-  background-position: 100% 0;
-    background-size: 200% 100%;
-    transition: all .25s ease-in;
-  }
+.medium{
+    #bar:nth-child(1)  { left: 33%; animation-duration: 474ms; }
+    #bar:nth-child(2)  { left: 36%; animation-duration: 433ms; }
+    #bar:nth-child(3)  { left: 39%; animation-duration: 407ms; }
+    #bar:nth-child(4)  { left: 42%; animation-duration: 458ms; }
+    #bar:nth-child(5)  { left: 45%; animation-duration: 400ms; }
+    #bar:nth-child(6)  { left: 48%; animation-duration: 427ms; }
+    #bar:nth-child(7)  { left: 51%; animation-duration: 441ms; }
+    #bar:nth-child(8)  { left: 54%; animation-duration: 419ms; }
+    #bar:nth-child(9)  { left: 57%; animation-duration: 487ms; }
+    #bar:nth-child(10) { left: 60%; animation-duration: 442ms; }
+    #bar:nth-child(11)  { left: 63%; animation-duration: 474ms; }
+}
 
-  .fill:hover{
-    background-position: 0 0;
-    color:#333;
-  }
-  
-  
+.hard{
+    #bar:nth-child(1)  { left: 66%; animation-duration: 433ms; }
+    #bar:nth-child(2)  { left: 69%; animation-duration: 407ms; }
+    #bar:nth-child(3)  { left: 72%; animation-duration: 458ms; }
+    #bar:nth-child(4)  { left: 75%; animation-duration: 400ms; }
+    #bar:nth-child(5)  { left: 78%; animation-duration: 427ms; }
+    #bar:nth-child(6)  { left: 81%; animation-duration: 441ms; }
+    #bar:nth-child(7)  { left: 84%; animation-duration: 419ms; }
+    #bar:nth-child(8)  { left: 87%; animation-duration: 487ms; }
+    #bar:nth-child(9)  { left: 90%; animation-duration: 442ms; }
+    #bar:nth-child(10)  { left: 93%; animation-duration: 419ms; }
+    #bar:nth-child(11)  { left: 96%; animation-duration: 487ms; }
+}
+
+/* .bar:nth-child(31) { left: 300px; animation-duration: 442ms; }
+.bar:nth-child(32)  { left: 310px; animation-duration: 474ms; }
+.bar:nth-child(33)  { left: 320px; animation-duration: 433ms; }
+.bar:nth-child(34)  { left: 330px; animation-duration: 407ms; }
+.bar:nth-child(35)  { left: 340px; animation-duration: 458ms; }
+.bar:nth-child(36)  { left: 350px; animation-duration: 400ms; }
+.bar:nth-child(37)  { left: 360px; animation-duration: 427ms; }
+.bar:nth-child(38)  { left: 370px; animation-duration: 441ms; }
+.bar:nth-child(39)  { left: 380px; animation-duration: 419ms; }
+.bar:nth-child(40)  { left: 390px; animation-duration: 487ms; }
+.bar:nth-child(41) { left: 400px; animation-duration: 442ms; } */

@@ -92,4 +92,12 @@
     </plugin>
     <engine name="ios" spec="4.5.4" />
     <allow-navigation href="http://192.168.1.6:8100" />
+    <allow-navigation href="http://172.30.13.143:8100" />
+    <allow-navigation href="http://169.254.142.24:8100" />
+    <allow-navigation href="http://169.254.57.30:8100" />
+    <allow-navigation href="http://169.254.89.32:8100" />
+    <allow-navigation href="http://169.254.203.71:8100" />
+    <allow-navigation href="http://169.254.5.229:8100" />
+    <allow-navigation href="http://169.254.210.186:8100" />
+    <allow-navigation href="http://169.254.200.134:8100" />
 </widget>

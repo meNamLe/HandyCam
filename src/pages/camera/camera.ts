@@ -11,7 +11,6 @@ import * as Clarifai from 'clarifai';
   templateUrl: 'camera.html',
 })
 export class CameraPage {
-  @ViewChild(Slides) slides: Slides;
   app = new Clarifai.App({
     apiKey: 'b214647a8e754c4c8b2b38ca25930485'
   });
@@ -26,17 +25,37 @@ export class CameraPage {
     quality: 72
   }
 
-  word = ["c","a","b","b","a","g","e"];
+  // possible letter combinations
+  possible = ['A','B','C','D','E','G','O','Y'];
+  // array of pictures to be sent to clarifai for prediction
   picArr = ['','','','','','',''];
+  // index while taking pictures
   picArrNum = 0;
+  // The predicted result of your signs
   results: string = '';
-  hit = "c";
-  difficulty = 1;
-  bounceIn: boolean;
+  // wrong prediction indexes in an array;
+   wrongIndex: Array<number> = [];
+  // difficulty passed from home page
+  difficulty: number;
+  // the letter needed to be signed
+  hit: string;
+  // The array of generated letters that will be signed
+  targets: Array<string> = []
+  targetStr: string = ''
 
-  stats = false;
+  // Start game countdown
+  startCount = false;
+
+  disable = true;
+
+  willLoad: boolean = false;
+
+  // 
   anim = true;
-  bool = false;
+  didPop: boolean = false;
+  hitbox = false;
+
+  clipboardStart: boolean = false
 
   constructor(public navCtrl: NavController,
               private cameraPreview: CameraPreview,
@@ -67,33 +86,27 @@ export class CameraPage {
   }
 
   // callback...
-  myCallbackFunction = (_params) => {
+  myCallbackFunction = (_params, bool) => {
     return new Promise((resolve, reject) => {
             console.log(_params);
-            this.bounceIn = _params;
+            console.log(bool);
+            this.didPop = bool;
+            this.difficulty = _params;
             resolve();
           });
   }
 
-  switchCamera(){
-    this.cameraPreview.switchCamera();
-  }
 
-  statsSwitch(){
-    this.stats = !this.stats;
-    if(this.bool == false){
-      this.bool = true;
+  challengeBox(){
+    if(this.hitbox == false){
+      this.hitbox = true;
     }
   }
 
-  ionViewDidEnter(){
-    console.log('view did load');
-    this.anim = !this.anim;
-  }
 
 
   //cameraPreview capture picture function
-  async takePicture(){
+  async takePicture(i, picsTaken){
     // take a picture
     await this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
       this.picArr[this.picArrNum] = ('data:image/jpeg;base64,' + imageData);
@@ -101,25 +114,28 @@ export class CameraPage {
     }, (err) => {
       console.log(err);
     });
-    this.hit = this.picArr[this.picArrNum];
+    if(i !== picsTaken - 1){
+      console.log('hi');
+      console.log(this.targets[i+1]);
+      this.hit = this.targets[i + 1];
+      console.log(this.hit);
+    }
+
     console.log('picture captured');
   }
 
    //clarifai predict function
-  predict = async () => {
+  predict = async (picsTaken) => {
       let imageData = this.picArr.map((base64) => {return base64.replace(/^data:image\/(.*);base64,/, '')});
       await this.app.models.predict("read", imageData ).then(
   
           (response) => {
                   console.log('predit');
                   console.log(response);
-                  for(let i = 0; i< 7; i++){
+                  for(let i = 0; i < picsTaken; i++) {
                       //if(response.outputs[i].data.concepts[0].name == this.word[i]){
                       //this.results = this.results + response.outputs[i].data.concepts[0].name;
                       this.results = this.results.concat(response.outputs[i].data.concepts[0].name);
-                      console.log(response.outputs[i].data.concepts[0].name)
-                      console.log(response.outputs[i].input.data.image.url);
-                      console.log(this.results);
                     //}
                   }
           }, 
@@ -128,63 +144,114 @@ export class CameraPage {
 
           }
       )
-      this.statsSwitch();
-      this.picArr = ['','','','','','',''];
-      console.log('----------------------------------------------------------------------');
-    }
-  /*     startPictures(){
-        //let testArr = ['https://i.imgur.com/FdheT2t.jpg', 'https://i.imgur.com/vKCXfnN.jpg','https://i.imgur.com/Yy7oysN.jpg','https://i.imgur.com/Yy7oysN.jpg','https://i.imgur.com/vKCXfnN.jpg','https://i.imgur.com/ufdOLSQ.jpg','https://i.imgur.com/OASiZwH.jpg'];    
-        let testArr = ['https://i.imgur.com/28x1RaU.jpg','https://i.imgur.com/fcoXdA3.jpg','https://i.imgur.com/vfQGN8Z.jpg','https://i.imgur.com/7jpKVxc.jpg','https://i.imgur.com/KOYRX5l.jpg'];
-  
-        setTimeout(() => this.takePicture() , 1000);
-        setTimeout(() => this.takePicture() , 2000);
-        setTimeout(() => this.predict(testArr), 3000);
-       }  */
-      startEasy(){
-        setTimeout(() => this.takePicture() , 1000);
-        setTimeout(() => this.takePicture() , 3500);
-        setTimeout(() => this.takePicture() , 6000);
-        setTimeout(() => this.takePicture() , 8500);
-        setTimeout(() => this.takePicture() , 11000);
-        setTimeout(() => this.takePicture() , 13500);
-        setTimeout(() => this.takePicture() , 16000);
-
-        setTimeout(() => this.predict() , 21000);
-      } 
-
-      startMedium(){
-        this.slides.lockSwipes(true);
-        setTimeout(() => this.takePicture() , 1000);
-        setTimeout(() => this.takePicture() , 3000);
-        setTimeout(() => this.takePicture() , 5000);
-        setTimeout(() => this.takePicture() , 7000);
-        setTimeout(() => this.takePicture() , 9000);
-        setTimeout(() => this.takePicture() , 11000);
-        setTimeout(() => this.takePicture() , 13000);
-
-        setTimeout(() => this.predict() , 21000);
-      } 
-
-      startHell(){
-        setTimeout(() => this.takePicture() , 1000);
-        setTimeout(() => this.takePicture() , 2000);
-        setTimeout(() => this.takePicture() , 3000);
-        setTimeout(() => this.takePicture() , 4000);
-        setTimeout(() => this.takePicture() , 5000);
-        setTimeout(() => this.takePicture() , 6000);
-        setTimeout(() => this.takePicture() , 7000);
-
-        setTimeout(() => this.predict() , 9000);
+      for(let i = 0; i < picsTaken; i++){
+        if(this.results[i].toUpperCase() !== this.targets[i]){
+          this.wrongIndex.push(i);
+          console.log(i);
+        }
       }
+      this.targetStr = this.targets.toString();
+      console.log(this.wrongIndex);
+      console.log(this.results);
+      this.picArr = ['','','','','','',''];
+      this.picArrNum = 0;
+      console.log('----------------------------------------------------------------------');
+      this.clipboardStart = true;
+      return;
+    }
+
+
+  generateRandom(picsTaken){
+    for(let i = 0; i < picsTaken; i++){
+      this.targets = this.targets.concat(this.possible[(Math.floor((Math.random() * 8) + 1)) -1]);
+    }
+  }
+
+  startTakingPic = async (picsTaken, seconds) => {
+    this.targets = [];
+    this.results = "";
+    await this.generateRandom(picsTaken);
+    this.challengeBox();
+    console.log(this.targets);
+    this.hit = this.targets[0];
+    this.startCount = true;
+    setTimeout(() => { 
+    for(let i = 0; i < picsTaken; i++) {
+      setTimeout(() => this.takePicture(i, picsTaken) , i * seconds);
+
+      // Loader
+      if (i === picsTaken - 1) {
+
+        this.hit = "";
+
+        setTimeout(async () => {
+          this.willLoad = true;
+          await this.predict(picsTaken)
+          this.willLoad = false;
+          this.hitbox = false;
+        } , (i * seconds) + 3000);
+      }
+    }
+  }, 5000)
+  }
+
+  startGame() {
+    console.log(this.difficulty);
+    if(this.difficulty === 1) {
+      this.startEasy();
+    }else if (this.difficulty === 2) {
+      this.startMedium();
+    }else if(this.difficulty === 3) {
+      this.startHell()
+    }
+  }
+
+  startEasy() {
+    const picsTaken = 3
+    const seconds = 5000;
+    this.startTakingPic(picsTaken, seconds)
   } 
-/*   
-      if(this.difficulty == 1){
-    console.log('matty cox');
-    }
-    else if(this.difficulty == 2){
-      console.log('betalpha male');
-    }
-    else{
-      console.log('big man')
-    }
- */
+
+  startMedium(){
+    const picsTaken = 5
+    const seconds = 3500;
+    this.startTakingPic(picsTaken, seconds)
+  } 
+
+  startHell(){
+    const picsTaken = 7
+    const seconds = 2000;
+    this.startTakingPic(picsTaken, seconds)
+  }
+  
+  return(){
+    // array of pictures to be sent to clarifai for prediction
+    this.picArr = ['','','','','','',''];
+    // index while taking pictures
+    this.picArrNum = 0;
+    // The predicted result of your signs
+    this.results = '';
+    // difficulty passed from home page
+    this.difficulty = 1;
+    // the letter needed to be signed
+    this.hit = '';
+    // The array of generated letters that will be signed
+    this.targets = [];
+    // Start game countdown
+    this.startCount = false;
+
+    // didPop
+    this.didPop = false;
+    this.hitbox = false;
+    this.willLoad = false;
+
+    this.clipboardStart = false;
+
+    // wrong stuff
+    this.wrongIndex = [];
+
+    let modal = this.modalCtrl.create(HomePage ,{callback: this.myCallbackFunction});
+    modal.present(); 
+  }
+
+} 
